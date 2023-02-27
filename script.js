@@ -8,20 +8,19 @@ function myColorChange() {
   element.style.color = "red";
 }
 
-const przesylka = {
-  name: "",
-  ulica: "",
-};
+let przesylka = {};
+let przesylka2 = {};
 
-const przesylka2 = {
-  name: "",
-  ulica: "",
-};
+const przesylkaJSON = '{"name":"List","ulica":""}'
+const przesylka2JSON = '{"name":"Paczka","ulica":"","waga":20}'
 
-przesylka2.waga = 20;
-przesylka.name = "List";
-przesylka2.name = "Paczka";
-
+try {
+  przesylka = JSON.parse(przesylkaJSON);
+  przesylka2 = JSON.parse(przesylka2JSON);
+} catch (error) {
+  console.log(error.name);
+  console.log(error.message);
+}
 
 function mojaFunkcja(id) {
 
@@ -45,37 +44,5 @@ function mojaFunkcja(id) {
     informacja = "Waga twojej przesylki to: " + przesylka2.waga + " kg";
     element2.innerHTML = informacja;
   }
-
 }
 
-
-
-function processCall(recipient, onAvailable, onNotAvailable) {
-  // Symuluj dostępność abonenta za pomocą liczby losowej
-    const isRecipientAvailable = Math.random() > 0.5;
-  
-    if (!isRecipientAvailable) {
-      onNotAvailable(recipient);
-      return;
-    }
-  
-    onAvailable(recipient);
-  }
-  
-  function takeCall(name) {
-    console.log(`Łączenie z ${name}, proszę czekać...`);
-  // Logika odbierania połączenia
-  }
-  
-  function activateAnsweringMachine(name) {
-    console.log(`Abonent ${name} jest niedostępny, zostaw wiadomość.`);
-  // Logika aktywacji automatycznej sekretarki
-  }
-  
-  function leaveHoloMessage(name) {
-    console.log(`Abonent ${name} jest niedostępny, nagrywamy hologram.`);
-  // Logika nagrywania hologramu
-  }
-  
-  processCall("Mango", takeCall, activateAnsweringMachine);
-  processCall("Poly", takeCall, leaveHoloMessage);
